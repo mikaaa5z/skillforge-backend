@@ -19,6 +19,22 @@ app.use(cors());
 app.use(express.json());
 
 // ============================================
+// ГЛАВНАЯ СТРАНИЦА (чтобы не было ошибки Cannot GET /)
+// ============================================
+
+app.get('/', (req, res) => {
+    res.json({
+        message: '🚀 SkillForge API работает!',
+        endpoints: {
+            test: 'GET  /api/test',
+            register: 'POST /api/register',
+            login: 'POST /api/login'
+        },
+        status: '✅ Сервер запущен и готов к работе!'
+    });
+});
+
+// ============================================
 // ТЕСТ
 // ============================================
 
@@ -101,6 +117,7 @@ app.post('/api/login', (req, res) => {
 
 app.listen(PORT, () => {
     console.log(`\n🚀 Сервер запущен на http://localhost:${PORT}`);
+    console.log(`📝 GET  /            - главная`);
     console.log(`📝 GET  /api/test     - проверка`);
     console.log(`📝 POST /api/register - регистрация`);
     console.log(`📝 POST /api/login    - вход\n`);
